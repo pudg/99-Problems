@@ -10,3 +10,18 @@ export const removeDups = (nums) => {
     }
     return slow;
 }
+
+// Use a num -> index mapping, to find solution within a single pass.
+export const twoSum = (nums, target) => {
+    let locations = {};
+
+    for (let idx = 0; idx < nums.length; idx++) {
+        let delta = target - nums[idx];
+        if (delta in locations) {
+            return [idx, locations[delta]];
+        } else {
+            locations[nums[idx]] = idx;
+        }
+    }
+    return [];
+}

@@ -11,3 +11,46 @@ func RemoveDups(nums []int) int {
 	}
 	return slow
 }
+
+func TwoSum(nums []int, target int) []int {
+	locations := make(map[int][]int)
+
+	for idx, num := range nums {
+		locations[num] = append(locations[num], idx)
+	}
+
+	for idx, num := range nums {
+		delta := target - num
+		if _, exists := locations[delta]; exists {
+			deltaIdx := locations[delta][0]
+			if num+nums[deltaIdx] == target {
+				if idx == deltaIdx {
+					if len(locations[delta]) >= 2 {
+						return locations[delta][:2]
+					}
+				} else {
+					return []int{idx, deltaIdx}
+				}
+			}
+		}
+	}
+
+	return []int{}
+}
+
+// Use a hash map to store index locations of values.
+// Finds solution in a single pass through the slice of nums.
+func TwoSumV2(nums []int, target int) []int {
+	locations := make(map[int]int)
+
+	for numIdx, num := range nums {
+		delta := target - num
+		if deltaIdx, exists := locations[delta]; exists {
+			return []int{numIdx, deltaIdx}
+		} else {
+			locations[num] = numIdx
+		}
+	}
+
+	return []int{}
+}

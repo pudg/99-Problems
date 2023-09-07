@@ -7,4 +7,5 @@ import (
 
 func main() {
 	fmt.Println(ten.RemoveDups([]int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}))
+	fmt.Println(ten.TwoSumV2([]int{3, 2, 4}, 6))
 }
