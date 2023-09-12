@@ -25,3 +25,18 @@ export const twoSum = (nums, target) => {
     }
     return [];
 }
+
+// Use two pointers to check for character equality over the string.
+export const validPalind = (phrase) => {
+    phrase = phrase.replace(/[^a-zA-Z0-9]/gi, '').toLowerCase();
+    let lhs = 0;
+    let rhs = phrase.length - 1;
+    while (lhs < rhs) {
+        if (phrase[lhs] != phrase[rhs]) {
+            return false;
+        }
+        lhs += 1;
+        rhs -= 1;
+    }
+    return true;
+}

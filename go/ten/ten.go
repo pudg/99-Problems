@@ -1,5 +1,10 @@
 package ten
 
+import (
+	"regexp"
+	"strings"
+)
+
 // Use two pointers. One slow, one fast. Perform swaps to the slow index.
 func RemoveDups(nums []int) int {
 	slow := 1
@@ -53,4 +58,21 @@ func TwoSumV2(nums []int, target int) []int {
 	}
 
 	return []int{}
+}
+
+// Use two pointers and work your way inwards.
+func ValidPalindrome(phrase string) bool {
+	re := regexp.MustCompile("[^a-zA-Z0-9]")
+	answer := re.ReplaceAllString(phrase, "")
+	answer = strings.ToLower((answer))
+	lhs := 0
+	rhs := len(answer) - 1
+	for lhs != rhs {
+		if string(answer[lhs]) != string(answer[rhs]) {
+			return false
+		}
+		lhs += 1
+		rhs -= 1
+	}
+	return true
 }

@@ -1,4 +1,6 @@
 use std::collections::HashMap;
+use regex::Regex;
+use std::iter::zip;
 
 // Use two pointers. One slow, one fast. Perform swaps to the slow index.
 pub fn remove_dups(nums: &mut Vec<i32>) -> usize {
@@ -27,4 +29,22 @@ pub fn two_sum(nums: &mut Vec<i32>, target: i32) -> Vec<i32> {
         }
     }
     vec![]
+}
+
+//Use regex crate to remove all non-alphanumeric characters from phrase.
+// Use two pointers to check for character equality over the string.
+pub fn valid_palind(phrase: String) -> bool {
+    let re = Regex::new(r"[^a-zA-Z0-9]").unwrap();
+
+    let result = re.replace_all(&phrase, "")
+    .to_lowercase();
+    let pairs = zip(result.chars(),result.chars().rev());
+
+    for pair in pairs {
+        if pair.0 != pair.1 {
+            return false;
+        }
+    }
+
+    true
 }
