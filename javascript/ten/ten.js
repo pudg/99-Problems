@@ -86,7 +86,5 @@ export const validAnagram = (s, t) => {
             return false;
         }
     }
-
->>>>>>> Stashed changes
     return true;
 }
