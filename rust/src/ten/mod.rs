@@ -15,8 +15,7 @@ pub fn remove_dups(nums: &mut Vec<i32>) -> usize {
     slow
 }
 
-// Use a hash map to store index locations of values.
-// Finds solution in a single pass through the slice of nums.
+// Use a num -> index mapping, to find solution within a single pass.
 pub fn two_sum(nums: &mut Vec<i32>, target: i32) -> Vec<i32> {
     let mut locations: HashMap<i32, i32> = HashMap::new();
 
@@ -47,4 +46,45 @@ pub fn valid_palind(phrase: String) -> bool {
     }
 
     true
+}
+// Use Newtons method to approximate the square root.
+pub fn newtons_sqroot(num: i32, tol: f32) -> f32 {
+    let mut x: f32 = num as f32;
+    let mut root: f32 = 0.5 * (x + (num as f32 / x));
+
+    loop {
+        if !((x - root).abs() < tol) {
+            x = root;
+            root = 0.5 * (x + (num as f32 / x));
+        } else {
+            return root;
+        }
+    }
+}
+
+// Use a hashmap to memorize previously seen integers.
+pub fn contains_dups(nums: Vec<i32>) -> bool {
+    let mut memory: HashMap<i32, i32> = HashMap::new();
+
+    for num in nums {
+        if memory.contains_key(&num) {
+            return true;
+        }
+        memory.insert(num, 1);
+    }
+
+    false
+}
+
+// Use a hashmap to memorize previously seen integers.
+pub fn contains_dups_v2(nums: Vec<i32>) -> bool {
+    let mut memory: HashMap<i32, i32> = HashMap::new();
+
+    for i in 0..nums.len() {
+        if memory.contains_key(&nums[i]) {
+            return true;
+        }
+        memory.insert(nums[i], 1);
+    }
+    false
 }

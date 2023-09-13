@@ -1,6 +1,7 @@
 package ten
 
 import (
+	"math"
 	"regexp"
 	"strings"
 )
@@ -75,4 +76,33 @@ func ValidPalindrome(phrase string) bool {
 		rhs -= 1
 	}
 	return true
+}
+
+// Use Newtons Method to approximate square root.
+func NewtonSquareRoot(num int32, tol float64) float64 {
+	x := float64(num)
+	root := float64(0.5 * (x + (float64(num) / x)))
+	for !(math.Abs(float64(x-root)) < tol) {
+		x = root
+		root = float64(0.5 * (x + (float64(num) / x)))
+	}
+	return root
+}
+
+// Use a hashmap to memorize previously seen integers.
+func ContainsDup(nums []int) bool {
+	memory := make(map[int]int)
+
+	for _, num := range nums {
+		if _, exists := memory[num]; exists {
+			return true
+		}
+		memory[num] = 1
+	}
+
+	return false
+}
+
+func ValidAnagram(s string, t string) bool {
+	return false
 }

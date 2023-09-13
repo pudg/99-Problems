@@ -38,5 +38,55 @@ export const validPalind = (phrase) => {
         lhs += 1;
         rhs -= 1;
     }
+}
+
+
+// Use Newtons method to approximate the square root.
+export const newtonSquareRoot = (num, tol) => {
+    let x = num;
+
+    let root = 0.5 * (x + (num / x));
+
+    while (!(Math.abs(x - root) < tol)) {
+        x = root;
+        root = 0.5 * (x + (num / x));
+    }
+    return root
+}
+
+export const containsDups = (nums) => {
+    let memory = {};
+
+    for (let num of nums) {
+        if (num in memory) {
+            return true;
+        }
+        memory[num] = 1;
+    }
+
+    return false;
+}
+
+export const validAnagram = (s, t) => {
+    s = s.split('').sort();
+    t = t.split('').sort();
+    let s_chars = {};
+    for (let ch of s) {
+        if (ch in s_chars) {
+            s_chars[ch] += 1;
+        } else {
+            s_chars[ch] = 1;
+        }
+    }
+
+    for (let ch of t) {
+        if (ch in s_chars && s_chars[ch] != 0) {
+            s_chars[ch] -= 1;
+        } else {
+            return false;
+        }
+    }
+
+>>>>>>> Stashed changes
     return true;
 }
