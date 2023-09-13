@@ -11,4 +11,6 @@ func main() {
 	fmt.Printf("SquareRoot of {%v} = {%v}\n", 327, ten.NewtonSquareRoot(327, 0.00001))
 	fmt.Printf("ContainsDups: {%v}\n", ten.ContainsDup([]int{1, 2, 3, 4}))
 	fmt.Printf("ContainsDups: {%v}\n", ten.ContainsDup([]int{1, 1, 1, 3, 3, 4, 3, 2, 4, 2}))
+	fmt.Printf("GroupedAnagrams: {%v}\n", ten.GroupAnagrams([]string{"eat", "tea", "tan", "ate", "nat", "bat"}))
+	fmt.Printf("TopKFreqs: {%v}\n", ten.TopKFreq([]int{1, 1, 1, 3, 3, 4, 3, 2, 4, 2}, 2))
 }

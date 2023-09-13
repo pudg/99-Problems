@@ -7,4 +7,12 @@ fn main() {
     println!("{}", ten::newtons_sqroot(327, 0.00001));
     println!("{}", ten::contains_dups(vec![1,1,1,3,3,4,3,2,4,2]));
     println!("{}", ten::contains_dups_v2(vec![1,1,1,3,3,4,3,2,4,2]));
+    println!("{:?}", ten::group_anagrams(vec![
+        "eat".to_string(),
+        "tea".to_string(),
+        "tan".to_string(),
+        "ate".to_string(),
+        "nat".to_string(),
+        "bat".to_string()]));
+    println!("{:?}", ten::top_k_freq(vec![1,1,1,2,2,3], 2));
 }

@@ -1,8 +1,10 @@
 package ten
 
 import (
+	"fmt"
 	"math"
 	"regexp"
+	"sort"
 	"strings"
 )
 
@@ -103,6 +105,50 @@ func ContainsDup(nums []int) bool {
 	return false
 }
 
-func ValidAnagram(s string, t string) bool {
-	return false
+func SortString(s string) string {
+	result := strings.Split(s, "")
+	sort.Strings(result)
+	return strings.Join(result, "")
+}
+
+func GroupAnagrams(words []string) [][]string {
+	anagrams := make(map[string][]string)
+
+	for _, word := range words {
+		sortedWord := SortString(word)
+		anagrams[sortedWord] = append(anagrams[sortedWord], word)
+	}
+
+	result := make([][]string, 0, len(anagrams))
+	for _, val := range anagrams {
+		result = append(result, val)
+	}
+	fmt.Println(result)
+	return result
+}
+
+func TopKFreq(nums []int, k int) []int {
+	freqs := make(map[int]int)
+
+	for _, num := range nums {
+		freqs[num]++
+	}
+
+	revFreqs := make(map[int][]int)
+
+	for key, val := range freqs {
+		revFreqs[val] = append(revFreqs[val], key)
+	}
+
+	result := []int{}
+
+	for i := len(nums); len(result) != k; i-- {
+		for _, val := range revFreqs[i] {
+			if len(result) != k {
+				result = append(result, val)
+			}
+		}
+	}
+
+	return result
 }

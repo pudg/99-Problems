@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::{collections::HashMap, hash::Hash};
 use regex::Regex;
 use std::iter::zip;
 
@@ -87,4 +87,34 @@ pub fn contains_dups_v2(nums: Vec<i32>) -> bool {
         memory.insert(nums[i], 1);
     }
     false
+}
+
+pub fn group_anagrams(words: Vec<String>) -> Vec<Vec<String>> {
+    let mut anagrams: HashMap<String, Vec<String>> = HashMap::new();
+
+    for word in words {
+        let mut chars: Vec<char> = word.chars().collect();
+        chars.sort_by(|a, b| a.cmp(b));
+        let sorted_chars = String::from_iter(chars);
+        if anagrams.contains_key(&sorted_chars) {
+            anagrams.get_mut(&sorted_chars).map(|val| val.push(sorted_chars));
+        } else {
+            anagrams.insert(sorted_chars, vec![word]);
+        }
+    }    
+    
+    anagrams.values().cloned().collect()
+}
+
+pub fn top_k_freq(nums: Vec<i32>, k: i32) -> Vec<i32> {
+    let mut freqs: HashMap<i32, i32> = HashMap::new();
+
+    nums.into_iter()
+    .for_each(|num| *freqs.entry(num).or_insert(0) += 1);
+
+    let mut result: Vec<(i32, i32)> = freqs.into_iter().collect();
+    result.sort_by(|a, b| b.1.cmp(&a.1));
+
+    result.iter().take(k as usize).map(|x| x.0).collect()
+
 }

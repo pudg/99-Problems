@@ -38,6 +38,7 @@ export const validPalind = (phrase) => {
         lhs += 1;
         rhs -= 1;
     }
+    return true;
 }
 
 
@@ -87,4 +88,46 @@ export const validAnagram = (s, t) => {
         }
     }
     return true;
+}
+
+
+export const topKElements = (nums, k) => {
+    let freqs = {};
+    let keys, vals, zip;
+
+    for (let num of nums) {
+        if (num in freqs) {
+            freqs[num] += 1;
+        } else {
+            freqs[num] = 1;
+        }
+    }
+
+    keys = Object.keys(freqs);
+    vals = Object.values(freqs);
+
+    zip = keys.map((key, idx) => {
+        return [key, vals[idx]];
+    })
+
+    zip.sort((a, b) => {
+        return b[1] - a[1];
+    });
+
+    return zip.slice(0, k).map(kv => kv[1]);
+}
+
+export const groupAnagrams = (words) => {
+    let anagrams = {};
+
+    for (let word of words) {
+        let sortedWord = word.toLowerCase().split('').sort().join('');
+        if (sortedWord in anagrams) {
+            anagrams[sortedWord].push(word);
+        } else {
+            anagrams[sortedWord] = [word];
+        }
+    }
+
+    return Object.values(anagrams);
 }
