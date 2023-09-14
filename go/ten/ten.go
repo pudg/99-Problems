@@ -152,3 +152,17 @@ func TopKFreq(nums []int, k int) []int {
 
 	return result
 }
+
+// Use a slow pointer to remember where the next swap should be.
+func RemoveElement(nums []int, target int) int {
+	slow := 0
+
+	for _, num := range nums {
+		if num != target {
+			nums[slow] = num
+			slow += 1
+		}
+	}
+
+	return slow
+}

@@ -13,4 +13,5 @@ func main() {
 	fmt.Printf("ContainsDups: {%v}\n", ten.ContainsDup([]int{1, 1, 1, 3, 3, 4, 3, 2, 4, 2}))
 	fmt.Printf("GroupedAnagrams: {%v}\n", ten.GroupAnagrams([]string{"eat", "tea", "tan", "ate", "nat", "bat"}))
 	fmt.Printf("TopKFreqs: {%v}\n", ten.TopKFreq([]int{1, 1, 1, 3, 3, 4, 3, 2, 4, 2}, 2))
+	fmt.Printf("RemoveElement: %v\n", ten.RemoveElement([]int{0, 1, 2, 2, 3, 0, 4, 2}, 2))
 }
