@@ -18,4 +18,6 @@ func main() {
 	fmt.Printf("ContainsDupsTwo: %v\n", ten.ContainsDupTwo([]int{1, 2, 3, 1}, 3))
 	fmt.Printf("ContainsDupsTwo: %v\n", ten.ContainsDupTwo([]int{1, 0, 1, 1}, 1))
 	fmt.Printf("CombinationSum: %v\n", ten.CombinationSum([]int{2, 3, 5, 8}, 8))
+	fmt.Printf("Cypher3: %v\n", ten.Cypher("abcdefghijklmnopqrstuvwxyz", 3))
+	fmt.Printf("Cypher3: %v\n", ten.Cypher("There's-a-starman-waiting-in-the-SKY", 3))
 }

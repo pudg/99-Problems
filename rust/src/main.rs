@@ -18,4 +18,6 @@ fn main() {
     println!("{:?}", ten::longest_substr_len("abcabcbb".to_string()));
     println!("{:?}", ten::longest_substr_len("pwwkew".to_string()));
     println!("{:?}", ten::longest_substr_len("bbbbb".to_string()));
+    println!("{:?}", ten::cypher("abcdefghijklmnopqrstuvwxyz".to_string(), 3));
+    println!("{:?}", ten::cypher("There's-a-starman-waiting-in-the-sky".to_string(), 3));
 }

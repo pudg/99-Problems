@@ -6,6 +6,7 @@ import (
 	"regexp"
 	"sort"
 	"strings"
+	"unicode"
 )
 
 // Use two pointers. One slow, one fast. Perform swaps to the slow index.
@@ -201,4 +202,27 @@ func CombinationSum(nums []int, target int) [][]int {
 		}
 	}
 	return combinations
+}
+
+func rot(c rune, k int32, base int32) string {
+	shifted := int32(c) + k
+	shifted -= base
+	shifted = shifted % 26
+	shifted += base
+	return string(shifted)
+}
+
+func Cypher(message string, k int32) string {
+	var encoded string
+	regex := regexp.MustCompile(`^[a-zA-Z0-9]*$`)
+	for i := range message {
+		if regex.MatchString(string(message[i])) && unicode.IsUpper(rune(message[i])) {
+			encoded += rot(rune(message[i]), k, 65)
+		} else if regex.MatchString(string(message[i])) && unicode.IsLower(rune(message[i])) {
+			encoded += rot(rune(message[i]), k, 97)
+		} else {
+			encoded += string(message[i])
+		}
+	}
+	return encoded
 }

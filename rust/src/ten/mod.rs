@@ -137,3 +137,26 @@ pub fn longest_substr_len(s: String) -> i32 {
 
     longest
 }
+
+pub fn rotate(c: char, k: u32, base: u32) -> char {
+    let mut encoded = c as u32;
+    encoded += k;
+    encoded -= base;
+    encoded = encoded % 26;
+    encoded += base;
+    char::from_u32(encoded).unwrap_or(c)
+}
+
+pub fn cypher(message: String, k: u32) -> String {
+    let mut encoded = String::new();
+    for m in message.chars() {
+        if m.is_alphanumeric() && m.is_uppercase() {
+            encoded.push(rotate(m, k, 65));
+        } else if m.is_alphanumeric() && m.is_lowercase() {
+            encoded.push(rotate(m, k, 97));
+        } else {
+            encoded.push(m);
+        }
+    }
+    encoded
+}
