@@ -166,3 +166,39 @@ func RemoveElement(nums []int, target int) int {
 
 	return slow
 }
+
+func ContainsDupTwo(nums []int, k int) bool {
+	locations := make(map[int]int)
+
+	for i, num := range nums {
+		if j, exists := locations[num]; exists {
+			if (i - j) <= k {
+				return true
+			}
+		}
+		locations[num] = i
+	}
+	return false
+}
+
+func CombinationSum(nums []int, target int) [][]int {
+	combinations := [][]int{}
+
+	set := map[int]int{}
+
+	for i := range nums {
+		set[nums[i]] = i
+	}
+
+	for rhs := len(nums) - 1; rhs >= 0; rhs-- {
+		if nums[rhs] == target {
+			combinations = append(combinations, []int{target})
+		}
+		delta := target - nums[rhs]
+
+		if _, exists := set[delta]; exists {
+			combinations = append(combinations, []int{nums[rhs], delta})
+		}
+	}
+	return combinations
+}

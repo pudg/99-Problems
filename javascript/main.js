@@ -23,5 +23,3 @@ function main() {
     console.log(topKElements([1], 1));
     console.log(groupAnagrams(["eat","tea","tan","ate","nat","bat"]));
 }
-
-main()

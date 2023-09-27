@@ -15,4 +15,7 @@ fn main() {
         "nat".to_string(),
         "bat".to_string()]));
     println!("{:?}", ten::top_k_freq(vec![1,1,1,2,2,3], 2));
+    println!("{:?}", ten::longest_substr_len("abcabcbb".to_string()));
+    println!("{:?}", ten::longest_substr_len("pwwkew".to_string()));
+    println!("{:?}", ten::longest_substr_len("bbbbb".to_string()));
 }

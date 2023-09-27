@@ -1,6 +1,7 @@
-use std::{collections::HashMap, hash::Hash};
+use std::collections::HashMap;
 use regex::Regex;
 use std::iter::zip;
+use std::cmp;
 
 // Use two pointers. One slow, one fast. Perform swaps to the slow index.
 pub fn remove_dups(nums: &mut Vec<i32>) -> usize {
@@ -116,5 +117,23 @@ pub fn top_k_freq(nums: Vec<i32>, k: i32) -> Vec<i32> {
     result.sort_by(|a, b| b.1.cmp(&a.1));
 
     result.iter().take(k as usize).map(|x| x.0).collect()
+}
 
+pub fn longest_substr_len(s: String) -> i32 {
+    let mut longest = 0;
+    let mut lhs = 0;
+    let mut i = 0;
+    let mut seen_chars: HashMap<char, i32> = HashMap::new();
+    
+    for c in s.chars() {
+        if seen_chars.contains_key(&c) && lhs <= seen_chars[&c] {
+            lhs = seen_chars[&c] + 1;
+        } else {
+            longest = cmp::max(longest, i - lhs + 1);
+        }
+        seen_chars.entry(c).and_modify(|idx|{ *idx = i}).or_insert(i);
+        i += 1;
+    }
+
+    longest
 }
