@@ -160,3 +160,23 @@ pub fn cypher(message: String, k: u32) -> String {
     }
     encoded
 }
+
+pub fn is_palindrome(x: i32) -> bool {
+    let num: Vec<char>= x.to_string().chars().collect();
+
+    let mut j = num.len();
+    if j <= 1 {
+        return true;
+    }
+    j -= 1;
+    let mut i = 0;
+    while i < j {
+        if num[i] != num[j] {
+            return false;
+        }
+        i += 1;
+        j -= 1;
+    }
+
+    true
+}

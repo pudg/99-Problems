@@ -1,5 +1,5 @@
 mod ten;
-
+mod twenty;
 fn main() {
     println!("{}", ten::remove_dups(&mut vec![0,0,1,1,1,2,2,3,3,4]));
     println!("{:?}", ten::two_sum(&mut vec![2,7,11,15], 26));
@@ -20,4 +20,8 @@ fn main() {
     println!("{:?}", ten::longest_substr_len("bbbbb".to_string()));
     println!("{:?}", ten::cypher("abcdefghijklmnopqrstuvwxyz".to_string(), 3));
     println!("{:?}", ten::cypher("There's-a-starman-waiting-in-the-sky".to_string(), 3));
+    println!("{}", ten::is_palindrome(121));
+    println!("{}", ten::is_palindrome(12));
+    println!("{}", twenty::valid_parens("()[]{}".to_string()));
+    println!("{}", twenty::valid_parens("(]".to_string()));
 }

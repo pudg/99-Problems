@@ -20,4 +20,5 @@ func main() {
 	fmt.Printf("CombinationSum: %v\n", ten.CombinationSum([]int{2, 3, 5, 8}, 8))
 	fmt.Printf("Cypher3: %v\n", ten.Cypher("abcdefghijklmnopqrstuvwxyz", 3))
 	fmt.Printf("Cypher3: %v\n", ten.Cypher("There's-a-starman-waiting-in-the-SKY", 3))
+	fmt.Printf("IsPalindrome: %v\n", ten.IsPalindrome(121))
 }

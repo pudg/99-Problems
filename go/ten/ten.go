@@ -5,6 +5,7 @@ import (
 	"math"
 	"regexp"
 	"sort"
+	"strconv"
 	"strings"
 	"unicode"
 )
@@ -225,4 +226,23 @@ func Cypher(message string, k int32) string {
 		}
 	}
 	return encoded
+}
+
+func IsPalindrome(x int) bool {
+	num := strconv.Itoa(x)
+	i := 0
+	j := len(num)
+	if j <= 1 {
+		return true
+	}
+	j -= 1
+
+	for i < j {
+		if num[i] != num[j] {
+			return false
+		}
+		i += 1
+		j -= 1
+	}
+	return true
 }

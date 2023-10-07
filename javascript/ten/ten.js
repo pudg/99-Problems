@@ -131,3 +131,21 @@ export const groupAnagrams = (words) => {
 
     return Object.values(anagrams);
 }
+
+export const IsPalindrome = (x) => {
+    let num = x.toString();
+    let j = num.length;
+    if (j <= 1) {
+        return true;
+    }
+
+    j -= 1;
+    for(let i = 0; i < j; i++) {
+        if (num[i] != num[j]) {
+            return false;
+        }
+         j -= 1;
+    }
+    
+    return true;
+}
