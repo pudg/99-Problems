@@ -16,12 +16,6 @@ class Node:
         self.nxt = nxt
     
 def merge_lists(l1, l2):
-    l1 = Node(2)
-    l2 = Node(1)
-    l1.nxt = Node(3)
-    l2.nxt = Node(4)
-    l2.nxt.nxt = Node(5)
-
     merged = Node()
     helper = merged
 
@@ -54,3 +48,63 @@ def merge_lists(l1, l2):
 
     return merged.nxt
 
+
+class Queue:
+    def __init__(self):
+        self.stack = []
+        self.rstack = []
+
+    def enqueue(self, val):
+        self.rstack.insert(0, val)
+        self.stack = self.rstack[::-1]
+        return
+    def dequeue(self):
+        val = self.stack.pop(0)
+        self.rstack.pop()
+        return val
+    def peek(self):
+        print(self.stack[0])
+        return
+
+
+def stack_queue():
+    queries = input('queries> ')
+    i = 0
+    q = Queue()
+
+    while i < int(queries):
+        operation = input('operation> ')
+        operation = operation.split(' ')
+        if '1' in operation:
+            q.enqueue(int(operation[1]))
+        elif '2' in operation:
+            q.dequeue()
+        else:
+            q.peek()
+        i += 1
+
+def balanced_parens(s):
+    if len(s) % 2 != 0:
+        return "NO"
+    
+    stack = []
+    obrackets = set(('(', '{', '['))
+    s_len = len(s)
+
+    for i in range(s_len):
+        if s[i] in obrackets:
+            stack.append(s[i])
+        else:
+            if len(stack) == 0 and i < s_len:
+                return "NO"
+            top = stack.pop()
+            if s[i] == ')' and top != '(':
+                return "NO"
+            elif s[i] == '}' and top != '{':
+                return "NO"
+            elif s[i] == ']' and top != '[':
+                return "NO"
+            
+    if len(stack) == 0:
+        return "YES"
+    return "NO"
