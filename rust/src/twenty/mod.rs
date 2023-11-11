@@ -1,4 +1,4 @@
-use std::collections::{VecDeque, HashSet};
+use std::collections::{VecDeque, HashSet, HashMap};
 
 pub fn valid_parens(parens: String) -> bool {
     let mut stack: VecDeque<char> = VecDeque::new();
@@ -22,4 +22,21 @@ pub fn valid_parens(parens: String) -> bool {
     }
 
     stack.len() == 0
+}
+
+pub fn plus_minus(nums: Vec<i32>) {
+    let mut counts: HashMap<char, f32> = HashMap::new();
+    let nums_len = nums.len() as f32;
+    for num in nums {
+        if num > 0 {
+            counts.entry('p').and_modify(|p| { *p = *p + 1.0}).or_insert(1.0);
+        } else if num < 0 {
+            counts.entry('n').and_modify(|n| { *n = *n + 1.0}).or_insert(1.0);
+        } else {
+            counts.entry('z').and_modify(|z| { *z = *z + 1.0}).or_insert(1.0);
+        }
+    }
+    let values: Vec<f32> = counts.values().map(|x| {x / nums_len}).collect();
+
+    println!("{:?}", values);
 }

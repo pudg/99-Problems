@@ -108,3 +108,19 @@ def balanced_parens(s):
     if len(stack) == 0:
         return "YES"
     return "NO"
+
+from collections import defaultdict
+
+def plus_minus(nums):
+    counts = defaultdict(int)
+
+    for num in nums:
+        if num > 0:
+            counts[1] += 1
+        elif num < 0:
+            counts[-1] += 1
+        else:
+            counts[0] += 1
+
+    freqs = list(map(lambda x: x / len(nums), counts.values()))
+    return freqs

@@ -24,4 +24,5 @@ fn main() {
     println!("{}", ten::is_palindrome(12));
     println!("{}", twenty::valid_parens("()[]{}".to_string()));
     println!("{}", twenty::valid_parens("(]".to_string()));
+    twenty::plus_minus(vec![-3, -2, -1, 0, 0, 1, 2, 3]);
 }
