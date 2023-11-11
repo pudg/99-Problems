@@ -25,4 +25,5 @@ fn main() {
     println!("{}", twenty::valid_parens("()[]{}".to_string()));
     println!("{}", twenty::valid_parens("(]".to_string()));
     twenty::plus_minus(vec![-3, -2, -1, 0, 0, 1, 2, 3]);
+    println!("{:?}", twenty::min_max_sum(vec![7, 9, 3, 5, 1]));
 }

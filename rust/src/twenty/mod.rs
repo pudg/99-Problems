@@ -40,3 +40,12 @@ pub fn plus_minus(nums: Vec<i32>) {
 
     println!("{:?}", values);
 }
+
+pub fn min_max_sum(nums: Vec<i32>) -> Vec<i32> {
+    let mut sums: Vec<i32> = Vec::new();
+    let mut sorted = nums.clone();
+    sorted.sort();
+    sums.push(sorted[0..=3].into_iter().sum());
+    sums.push(sorted[sorted.len()-4..sorted.len()].into_iter().sum());
+    sums
+}

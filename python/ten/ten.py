@@ -124,3 +124,9 @@ def plus_minus(nums):
 
     freqs = list(map(lambda x: x / len(nums), counts.values()))
     return freqs
+
+def min_max_sum(nums):
+    nums = sorted(nums)
+    min = sum(nums[:4])
+    max = sum(nums[-4:])
+    print(min, max)
