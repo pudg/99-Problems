@@ -2,6 +2,7 @@ package twenty
 
 import (
 	"sort"
+	"strconv"
 )
 
 func MapValues[K comparable, V any](values map[K]V) []V {
@@ -50,4 +51,22 @@ func MinMaxSum(nums []int) []int {
 	max := SumIntSlice(nums[len(nums)-4:])
 	sums = append(sums, min, max)
 	return sums
+}
+
+func TimeConvert(t string) string {
+	var result string
+	if t[len(t)-2:] == "AM" && t[:2] == "12" {
+		result = "00" + t[2:len(t)-2]
+	} else if t[len(t)-2:] == "AM" {
+		result = t[:len(t)-2]
+	} else if t[len(t)-2:] == "PM" && t[:2] == "12" {
+		result = t[:len(t)-2]
+	} else {
+		hour, err := strconv.Atoi(t[:2])
+		if err != nil {
+			panic("Unable to convert to int.")
+		}
+		result = strconv.Itoa(12+hour) + t[2:len(t)-2]
+	}
+	return result
 }

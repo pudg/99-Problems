@@ -130,3 +130,16 @@ def min_max_sum(nums):
     min = sum(nums[:4])
     max = sum(nums[-4:])
     print(min, max)
+
+def convert_time(t):
+    result = ""
+    if t[-2:] == "AM" and t[:2] == "12":
+        result = "00" + t[2:len(t)-2]
+    elif t[-2:] == "AM":
+        result = t[:len(t)-2]
+    elif t[-2:] == "PM" and t[:2] == "12":
+        result = t[:len(t)-2]
+    else:
+        result = str(12 + int(t[:2])) + t[2:len(t)-2]
+    print(result)
+    return result

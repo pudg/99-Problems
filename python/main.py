@@ -5,7 +5,8 @@ sys.path.insert(0, os.getcwd() + '/ten')
 import ten
 
 def main():
-    ten.min_max_sum([1, 3, 5, 7, 9])
+    ten.convert_time("01:00:00PM")
+    ten.convert_time("01:00:00AM")
 
 if __name__ == "__main__":
     main()
