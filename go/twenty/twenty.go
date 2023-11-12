@@ -1,6 +1,7 @@
 package twenty
 
 import (
+	"math"
 	"sort"
 	"strconv"
 )
@@ -103,4 +104,16 @@ func LonelyInt(nums []int) int {
 		}
 	}
 	return result
+}
+
+func DiagDiff(mat [][]int) float64 {
+	j := len(mat) - 1
+	td := 0.0
+	du := 0.0
+	for i := range mat {
+		td += float64(mat[i][i])
+		du += float64(mat[j][i])
+		j -= 1
+	}
+	return math.Abs(td - du)
 }

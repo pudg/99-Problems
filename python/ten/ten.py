@@ -168,3 +168,11 @@ def lonely_int(nums):
             result = key
             break
     return result
+
+def diag_diff(matrix):
+    i, td, bu = 0, 0, 0
+    for j in range(len(matrix)-1, -1, -1):
+        td += matrix[i][i]
+        bu += matrix[j][i]
+        i += 1
+    return abs(td-bu)

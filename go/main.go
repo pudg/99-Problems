@@ -6,6 +6,5 @@ import (
 )
 
 func main() {
-	fmt.Println(twenty.SparseArray([]string{"ab", "ab", "abc"}, []string{"ab", "abc", "bcd"}))
-	fmt.Println(twenty.LonelyInt([]int{1, 8, 3, 4, 4, 1, 3, 3, 4}))
+	fmt.Println(twenty.DiagDiff([][]int{{1, 2, 3}, {4, 5, 6}, {9, 8, 9}}))
 }
