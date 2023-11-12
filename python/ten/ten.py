@@ -129,7 +129,7 @@ def min_max_sum(nums):
     nums = sorted(nums)
     min = sum(nums[:4])
     max = sum(nums[-4:])
-    print(min, max)
+    return min, max
 
 def convert_time(t):
     result = ""
@@ -141,5 +141,30 @@ def convert_time(t):
         result = t[:len(t)-2]
     else:
         result = str(12 + int(t[:2])) + t[2:len(t)-2]
-    print(result)
+
+    return result
+
+def sparse_arrays(vals, query):
+    freqs = defaultdict(int)
+    for val in vals:
+        freqs[val] += 1
+
+    result = []
+    for q in query:
+        if q in freqs:
+            result.append(freqs[q])
+        else:
+            result.append(0)
+    return result
+
+def lonely_int(nums):
+    freqs = defaultdict(int)
+    result = None
+    for num in nums:
+        freqs[num] += 1
+
+    for key in freqs.keys():
+        if freqs[key] == 1:
+            result = key
+            break
     return result

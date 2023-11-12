@@ -6,9 +6,6 @@ import (
 )
 
 func main() {
-	fmt.Println(twenty.PlusMinus([]int{-3, -2, -1, 0, 1, 2, 3}))
-	fmt.Println(twenty.MinMaxSum([]int{7, 9, 3, 5, 1}))
-	fmt.Println(twenty.TimeConvert("02:01:00PM"))
-	fmt.Println(twenty.TimeConvert("12:01:00PM"))
-	fmt.Println(twenty.TimeConvert("12:01:00AM"))
+	fmt.Println(twenty.SparseArray([]string{"ab", "ab", "abc"}, []string{"ab", "abc", "bcd"}))
+	fmt.Println(twenty.LonelyInt([]int{1, 8, 3, 4, 4, 1, 3, 3, 4}))
 }

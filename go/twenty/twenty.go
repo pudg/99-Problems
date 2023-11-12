@@ -70,3 +70,37 @@ func TimeConvert(t string) string {
 	}
 	return result
 }
+
+func SparseArray(values, queries []string) []int {
+	var result []int
+	freqs := make(map[string]int)
+	for _, x := range values {
+		freqs[x] += 1
+	}
+
+	for _, q := range queries {
+		if val, ok := freqs[q]; ok {
+			result = append(result, val)
+		} else {
+			result = append(result, 0)
+		}
+	}
+	return result
+}
+
+func LonelyInt(nums []int) int {
+	var result int
+	freqs := make(map[int]int)
+
+	for idx := range nums {
+		freqs[nums[idx]] += 1
+	}
+
+	for key, val := range freqs {
+		if val == 1 {
+			result = key
+			break
+		}
+	}
+	return result
+}
