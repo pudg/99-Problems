@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	fmt.Println(twenty.DiagDiff([][]int{{1, 2, 3}, {4, 5, 6}, {9, 8, 9}}))
+	fmt.Println(twenty.Pangram("We promptly judged antique ivory buckles for the next prize"))
 }

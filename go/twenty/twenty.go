@@ -1,9 +1,12 @@
 package twenty
 
 import (
+	"fmt"
 	"math"
+	"slices"
 	"sort"
 	"strconv"
+	"strings"
 )
 
 func MapValues[K comparable, V any](values map[K]V) []V {
@@ -116,4 +119,30 @@ func DiagDiff(mat [][]int) float64 {
 		j -= 1
 	}
 	return math.Abs(td - du)
+}
+
+func SortCount(nums []int) {
+	maxNum := slices.Max(nums)
+	zeros := make([]int, maxNum+1)
+	for i := range nums {
+		zeros[nums[i]] += 1
+	}
+	for i := range zeros {
+		if zeros[i] != 0 {
+			for j := 0; j < zeros[i]; j++ {
+				fmt.Println(i)
+			}
+		}
+	}
+}
+
+func Pangram(s string) bool {
+	s = strings.ToLower(s)
+	chars := make(map[string]int)
+	for i := range s {
+		if s[i] != ' ' {
+			chars[string(s[i])] += 1
+		}
+	}
+	return len(chars) == 26
 }
