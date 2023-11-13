@@ -1,6 +1,5 @@
 def count_sort(nums):
     zeros = [0] * (max(nums) + 1)
-
     for num in nums:
         zeros[num] += 1
 
@@ -9,8 +8,9 @@ def count_sort(nums):
             print((str(i)+'\n')*val)
 
 
-from collections import defaultdict
+
 def pangram(s):
+    from collections import defaultdict
     s = s.lower()
     chars = defaultdict(int)
     for c in s:

@@ -127,6 +127,7 @@ func SortCount(nums []int) {
 	for i := range nums {
 		zeros[nums[i]] += 1
 	}
+
 	for i := range zeros {
 		if zeros[i] != 0 {
 			for j := 0; j < zeros[i]; j++ {
@@ -144,5 +145,6 @@ func Pangram(s string) bool {
 			chars[string(s[i])] += 1
 		}
 	}
+
 	return len(chars) == 26
 }
