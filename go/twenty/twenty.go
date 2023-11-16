@@ -148,3 +148,30 @@ func Pangram(s string) bool {
 
 	return len(chars) == 26
 }
+
+func ArrayPerm(A, B []int, k int) string {
+	sort.Ints(A)
+	sort.Slice(B, func(i, j int) bool {
+		return B[i] > B[j]
+	})
+
+	for i := range A {
+		if A[i]+B[i] < k {
+			return "NO"
+		}
+	}
+
+	return "YES"
+}
+
+func SubarrayDivision(nums []int, day, month int) int {
+	result := 0
+
+	for i := range nums {
+		subArr := nums[i : i+month]
+		if SumIntSlice(subArr) == day {
+			result += 1
+		}
+	}
+	return result
+}
