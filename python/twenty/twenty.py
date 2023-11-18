@@ -38,4 +38,16 @@ def subarray_division(nums, day, month):
             result += 1
 
     return result
+
+def sales_match(nums):
+    from collections import defaultdict
+    count = 0
+    freqs = defaultdict(int)
+
+    for num in nums:
+        freqs[num] += 1
+        if freqs[num] % 2 == 0:
+            count += 1
+
+    return count
     

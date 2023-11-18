@@ -175,3 +175,16 @@ func SubarrayDivision(nums []int, day, month int) int {
 	}
 	return result
 }
+
+func SalesMatch(nums []int) int {
+	pairs := 0
+	freqs := make(map[int]int)
+
+	for i := range nums {
+		freqs[nums[i]] += 1
+		if freqs[nums[i]]%2 == 0 {
+			pairs += 1
+		}
+	}
+	return pairs
+}

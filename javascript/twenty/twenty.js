@@ -24,3 +24,21 @@ export const validParens = (message) => {
     }
     return stack.length == 0;
 }
+
+export const SockPairs = (nums) => {
+    let pairs = 0;
+    let freqs = {};
+
+    for (let num of nums) {
+        if (num in freqs) {
+            freqs[num] += 1;
+            if (freqs[num] % 2 == 0) {
+                pairs += 1;
+            }
+        } else {
+            freqs[num] = 1;
+        }
+    }
+    
+    return pairs;
+}
