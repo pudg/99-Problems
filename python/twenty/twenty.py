@@ -51,3 +51,16 @@ def sales_match(nums):
 
     return count
     
+def book_page(num, page):
+    lhs = page // 2
+    rhs = (num // 2) - (page // 2)
+    return min(lhs, rhs)
+
+def min_unfair(arr, k):
+    arr.sort()
+    global_min = arr[-1]
+    for i in range(len(arr) - k + 1):
+        diff = arr[i + k - 1] - arr[i]
+        global_min = min(global_min, diff)
+
+    return global_min

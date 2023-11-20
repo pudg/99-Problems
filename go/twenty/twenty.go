@@ -188,3 +188,20 @@ func SalesMatch(nums []int) int {
 	}
 	return pairs
 }
+
+func BookPage(num, page int) int {
+	lhs := page / 2
+	rhs := (num / 2) - (page / 2)
+	return min(lhs, rhs)
+}
+
+func UnfairMin(arr []int, k int) int {
+	sort.Ints(arr)
+	globalMin := arr[len(arr)-1]
+
+	for i := 0; i < len(arr)-k+1; i++ {
+		diff := arr[i+k-1] - arr[i]
+		globalMin = min(globalMin, diff)
+	}
+	return globalMin
+}
