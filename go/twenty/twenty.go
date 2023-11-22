@@ -205,3 +205,47 @@ func UnfairMin(arr []int, k int) int {
 	}
 	return globalMin
 }
+
+func DynamicArray(n int, queries [][]int) []int {
+	arr := make([][]int, n)
+	answers := []int{}
+	lastAnswer := 0
+
+	for i := range queries {
+		if queries[i][0] == 1 {
+			idx := ((queries[i][1] ^ lastAnswer) % n)
+			arr[idx] = append(arr[idx], queries[i][2])
+		} else {
+			idx := ((queries[i][1] ^ lastAnswer) % n)
+			lastAnswer = arr[idx][queries[i][2]%len(arr[idx])]
+			answers = append(answers, lastAnswer)
+		}
+	}
+	return answers
+}
+
+func NearestPower2(n int) int {
+	return int(math.Pow(2, math.Floor(math.Log2(float64(n)))))
+}
+
+func CounterGame(n int) string {
+	move := true
+
+	for {
+		nearest := NearestPower2(n)
+		if n != nearest {
+			n = n - nearest
+		} else {
+			n = n / 2
+		}
+		if n == 1 {
+			break
+		}
+		move = !move
+	}
+	if move {
+		return "Player1"
+	} else {
+		return "Player2"
+	}
+}

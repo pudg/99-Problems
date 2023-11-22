@@ -64,3 +64,36 @@ def min_unfair(arr, k):
         global_min = min(global_min, diff)
 
     return global_min
+
+def dynamic_arr(n, queries):
+    arr = [[] for _ in range(n)]
+    answers = []
+    lastAnswer = 0
+    
+    for query in queries:
+        if query[0] == 1:
+            idx = ((query[1] ^ lastAnswer) % n)
+            arr[idx].append(query[2])
+        else:
+            idx = ((query[1] ^ lastAnswer) % n)
+            lastAnswer = arr[idx][query[2] % len(arr[idx])]
+            answers.append(lastAnswer)
+            
+    return answers
+
+import math
+def nearest_power2(n):
+    return 2 ** (math.floor(math.log(n, 2)))
+
+def counter_game(n):
+    move = True
+    while n != 1:
+        nearest = nearest_power2(n)
+        if n != nearest:
+            n = n - nearest
+        else:
+            n = n // 2
+        if n == 1:
+            break
+        move = not move
+    return "Player1" if move else "Player2"
