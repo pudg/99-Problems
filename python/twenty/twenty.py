@@ -97,3 +97,32 @@ def counter_game(n):
             break
         move = not move
     return "Player1" if move else "Player2"
+
+def reverse_ll_naive(root):
+    if root == None:
+        return None
+    nodes = []
+
+    while root:
+        nodes.append(root)
+        root = root.next
+
+    new_head = nodes.pop()
+    helper = new_head
+    while nodes:
+        temp = nodes.pop()
+        if temp == None:
+            helper.next = None
+            break
+        helper.next = temp
+    return new_head
+
+def reverse_llist(root):
+    curr = root
+    prev = None
+    while curr:
+        curr_next = curr.next
+        curr.next = prev
+        prev = curr
+        curr = curr_next
+    return prev

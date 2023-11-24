@@ -249,3 +249,24 @@ func CounterGame(n int) string {
 		return "Player2"
 	}
 }
+
+type Node struct {
+	val  string
+	next *Node
+}
+
+func ReverseLL(root *Node) {
+	curr := root
+	var prev *Node
+	prev = nil
+
+	for {
+		currNext := curr.next
+		curr.next = prev
+		prev = currNext
+		curr = currNext
+		if curr == nil {
+			break
+		}
+	}
+}
