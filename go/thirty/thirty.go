@@ -27,3 +27,32 @@ func BFS(root *Node, target int) bool {
 	}
 	return false
 }
+
+func MinHeight(root *Node) int {
+	if root == nil {
+		return 0
+	}
+
+	depth := 1
+	queue := []*Node{root}
+
+	for len(queue) > 0 {
+		queueLen := len(queue)
+
+		for i := 0; i < queueLen; i++ {
+			curr := queue[0]
+			queue = queue[1:]
+			if curr.Left == nil && curr.Right == nil {
+				return depth
+			}
+			if curr.Left != nil {
+				queue = append(queue, curr.Left)
+			}
+			if curr.Right != nil {
+				queue = append(queue, curr.Right)
+			}
+		}
+		depth += 1
+	}
+	return depth
+}
