@@ -56,3 +56,42 @@ func MinHeight(root *Node) int {
 	}
 	return depth
 }
+
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+	carry := 0
+	dummy := &ListNode{}
+	helper := dummy
+
+	for l1 != nil || l2 != nil || carry != 0 {
+		var l1Val, l2Val int
+		if l1 != nil {
+			l1Val = l1.Val
+		} else {
+			l1Val = 0
+		}
+
+		if l2 != nil {
+			l2Val = l2.Val
+		} else {
+			l2Val = 0
+		}
+
+		currSum := l1Val + l2Val + carry
+		val := currSum % 10
+		carry = currSum / 10
+		helper.Next = &ListNode{val, nil}
+		helper = helper.Next
+		if l1 != nil {
+			l1 = l1.Next
+		}
+		if l2 != nil {
+			l2 = l2.Next
+		}
+	}
+	return dummy.Next
+}

@@ -33,3 +33,25 @@ def min_height(root):
                 queue.append(curr.right)
         depth += 1
     return depth
+
+class Node():
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def add_two_numbers(l1, l2):
+    carry = 0
+    dummy = Node()
+    helper = dummy
+    while l1 or l2 or carry != 0:
+        l1_val = l1.val if l1 else 0
+        l2_val = l2.val if l2 else 0
+        curr_sum = l1_val + l2_val + carry
+        val = curr_sum % 10
+        carry = carry // 10
+        helper.next = Node(val)
+        helper = helper.next
+        l1 = l1.next if l1 else None
+        l2 = l2.next if l2 else None
+
+    return dummy.next
