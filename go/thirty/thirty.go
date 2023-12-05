@@ -62,7 +62,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+func AddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	carry := 0
 	dummy := &ListNode{}
 	helper := dummy
@@ -94,4 +94,38 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 		}
 	}
 	return dummy.Next
+}
+
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
+type NodeSumPair struct {
+	Node *TreeNode
+	Sum  int
+}
+
+func PathSum(root *TreeNode, targetSum int) bool {
+	stack := []*NodeSumPair{{root, root.Val}}
+
+	for len(stack) != 0 {
+		curr := stack[0]
+		stack = stack[1:]
+		if curr.Node.Left != nil && curr.Node.Right != nil {
+			if curr.Sum == targetSum {
+				return true
+			}
+		} else {
+			if curr.Node.Left != nil {
+				stack = append(stack, &NodeSumPair{curr.Node.Left, curr.Sum + curr.Node.Left.Val})
+			}
+			if curr.Node.Right != nil {
+				stack = append(stack, &NodeSumPair{curr.Node.Right, curr.Sum + curr.Node.Right.Val})
+			}
+		}
+	}
+
+	return false
 }

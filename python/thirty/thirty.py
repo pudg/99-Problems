@@ -55,3 +55,21 @@ def add_two_numbers(l1, l2):
         l2 = l2.next if l2 else None
 
     return dummy.next
+
+def path_sum(root, target_sum):
+    if root is None:
+        return False
+    stack = [(root, root.val)]
+
+    while stack:
+        curr = stack.pop(0)
+        if curr[0].left is None and curr[0].right is None:
+            if curr[1] == target_sum:
+                return True
+        else:
+            if curr[0].left is not None:
+                stack.append((curr[0].left, curr[1] + curr[0].left.val))
+            if curr[0].right is not None:
+                stack.append((curr[0].right, curr[1] + curr[0].right.val))
+
+    return False
