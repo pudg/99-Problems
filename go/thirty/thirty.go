@@ -108,6 +108,9 @@ type NodeSumPair struct {
 }
 
 func PathSum(root *TreeNode, targetSum int) bool {
+	if root == nil {
+		return false
+	}
 	stack := []*NodeSumPair{{root, root.Val}}
 
 	for len(stack) != 0 {
@@ -126,6 +129,5 @@ func PathSum(root *TreeNode, targetSum int) bool {
 			}
 		}
 	}
-
 	return false
 }
