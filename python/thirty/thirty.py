@@ -1,8 +1,7 @@
 def bfs(root, target):
     if root == None:
         return
-    queue = []
-    queue.append(root)
+    queue = [root]
     while queue:
         curr = queue.pop()
         if curr.left != None:
@@ -13,6 +12,21 @@ def bfs(root, target):
         if curr.val == target:
             return True
         
+    return False
+
+def dfs(root, target):
+    if root is None:
+        return False
+    
+    stack = [root]
+    while stack:
+        curr = stack.pop(0)
+        if curr.val == target:
+            return True
+        if curr.left is not None:
+            stack.append(curr.left)
+        if curr.right is not None:
+            stack.append(curr.right)
     return False
 
 def min_height(root):
@@ -73,3 +87,19 @@ def path_sum(root, target_sum):
                 stack.append((curr[0].right, curr[1] + curr[0].right.val))
 
     return False
+
+def preorder_traversal(root):
+    if root is None:
+        return []
+    
+    values, stack = [], [root]
+    while stack:
+        curr = stack.pop()
+        values.append(curr.val)
+
+        if curr.right is not None:
+            stack.append(curr.right)
+        if curr.left is not None:
+            stack.append(curr.left)
+        
+    return values
