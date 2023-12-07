@@ -1,5 +1,7 @@
 package thirty
 
+import "slices"
+
 type Node struct {
 	Val   int
 	Left  *Node
@@ -151,5 +153,28 @@ func PreorderTraversal(root *TreeNode) []int {
 		}
 	}
 
+	return values
+}
+
+func PostorderTraversal(root *TreeNode) []int {
+	if root == nil {
+		return []int{}
+	}
+
+	var values []int
+	stack := []TreeNode{*root}
+
+	for len(stack) > 0 {
+		curr := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		values = append(values, curr.Val)
+		if curr.Left != nil {
+			stack = append(stack, *curr.Left)
+		}
+		if curr.Right != nil {
+			stack = append(stack, *curr.Right)
+		}
+	}
+	slices.Reverse(values)
 	return values
 }

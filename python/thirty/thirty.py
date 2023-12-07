@@ -103,3 +103,20 @@ def preorder_traversal(root):
             stack.append(curr.left)
         
     return values
+
+def postorder_traversal(root):
+    if root is None:
+        return []
+    
+    values, stack = [], [root]
+    while stack:
+        curr = stack.pop()
+        values.append(curr.val)
+        if curr.left is not None:
+            stack.append(curr.left)
+        if curr.right is not None:
+            stack.append(curr.right)
+            
+    return values[::-1]
+
+    return values
