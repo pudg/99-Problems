@@ -100,6 +100,7 @@ func AddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 
 type TreeNode struct {
 	Val   int
+	Next  *TreeNode
 	Left  *TreeNode
 	Right *TreeNode
 }
@@ -177,4 +178,39 @@ func PostorderTraversal(root *TreeNode) []int {
 	}
 	slices.Reverse(values)
 	return values
+}
+
+func LLCycle(head *ListNode) bool {
+	visited := make(map[*ListNode]bool)
+	curr := head
+
+	for curr != nil {
+		if visited[curr] {
+			return true
+		}
+		visited[curr] = true
+		curr = curr.Next
+	}
+	return false
+}
+
+func LLIntersection(headA, headB *ListNode) *ListNode {
+	if headA == nil || headB == nil {
+		return nil
+	}
+
+	memory := make(map[*ListNode]bool)
+	helperA := headA
+	for helperA != nil {
+		memory[helperA] = true
+	}
+
+	helperB := headB
+	for helperB != nil {
+		if _, exists := memory[helperB]; exists {
+			return helperB
+		}
+		helperB = headB.Next
+	}
+	return nil
 }

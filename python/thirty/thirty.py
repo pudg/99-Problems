@@ -119,4 +119,34 @@ def postorder_traversal(root):
             
     return values[::-1]
 
-    return values
+def ll_cycle(head):
+    if head is None:
+        return False
+    visited = {}
+    curr = head
+
+    while curr:
+        if curr in visited:
+            return True
+        visited[curr] = True
+        curr = curr.next
+
+    return False
+
+def ll_intersection(headA, headB):
+    if headA is None or headB is None:
+        return None
+    
+    memory = set()
+    helperA = headA
+    while helperA:
+        memory.add(helperA)
+        helperA = helperA.next
+
+    helperB = headB
+    while helperB:
+        if helperB in memory:
+            return helperB
+        helperB = helperB.next
+
+    return None
