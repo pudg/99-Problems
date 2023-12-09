@@ -150,3 +150,20 @@ def ll_intersection(headA, headB):
         helperB = helperB.next
 
     return None
+
+
+def longest_substring(s):
+    if s == "":
+        return 0
+    
+    memory = {}
+    max_len, lhs = 0, 0
+
+    for rhs in range(len(s)):
+        if s[rhs] in memory and memory[s[rhs]] >= lhs:
+            lhs = memory[s[rhs]] + 1
+        else:
+            max_len = max(max_len, rhs - lhs + 1)
+        memory[s[rhs]] = rhs
+    
+    return max_len

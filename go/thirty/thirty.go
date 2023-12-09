@@ -73,27 +73,17 @@ func AddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 		var l1Val, l2Val int
 		if l1 != nil {
 			l1Val = l1.Val
-		} else {
-			l1Val = 0
+			l1 = l1.Next
 		}
 
 		if l2 != nil {
 			l2Val = l2.Val
-		} else {
-			l2Val = 0
-		}
-
-		currSum := l1Val + l2Val + carry
-		val := currSum % 10
-		carry = currSum / 10
-		helper.Next = &ListNode{val, nil}
-		helper = helper.Next
-		if l1 != nil {
-			l1 = l1.Next
-		}
-		if l2 != nil {
 			l2 = l2.Next
 		}
+		sum := l1Val + l2Val + carry
+		carry = sum / 10
+		helper.Next = &ListNode{sum % 10, nil}
+		helper = helper.Next
 	}
 	return dummy.Next
 }
@@ -114,21 +104,21 @@ func PathSum(root *TreeNode, targetSum int) bool {
 	if root == nil {
 		return false
 	}
-	stack := []*NodeSumPair{{root, root.Val}}
+	queue := []*NodeSumPair{{root, root.Val}}
 
-	for len(stack) != 0 {
-		curr := stack[0]
-		stack = stack[1:]
+	for len(queue) != 0 {
+		curr := queue[0]
+		queue = queue[1:]
 		if curr.Node.Left != nil && curr.Node.Right != nil {
 			if curr.Sum == targetSum {
 				return true
 			}
 		} else {
 			if curr.Node.Left != nil {
-				stack = append(stack, &NodeSumPair{curr.Node.Left, curr.Sum + curr.Node.Left.Val})
+				queue = append(queue, &NodeSumPair{curr.Node.Left, curr.Sum + curr.Node.Left.Val})
 			}
 			if curr.Node.Right != nil {
-				stack = append(stack, &NodeSumPair{curr.Node.Right, curr.Sum + curr.Node.Right.Val})
+				queue = append(queue, &NodeSumPair{curr.Node.Right, curr.Sum + curr.Node.Right.Val})
 			}
 		}
 	}
@@ -213,4 +203,23 @@ func LLIntersection(headA, headB *ListNode) *ListNode {
 		helperB = headB.Next
 	}
 	return nil
+}
+
+func LongestSubstring(s string) int {
+	if len(s) == 0 {
+		return 0
+	}
+	memory := make(map[string]int, 0)
+	lhs := 0
+	result := 0
+
+	for rhs := 0; rhs < len(s); rhs++ {
+		if _, exists := memory[string(s[rhs])]; exists && memory[string(s[rhs])] >= lhs {
+			lhs = memory[string(s[rhs])] + 1
+		} else {
+			result = max(result, rhs-lhs+1)
+		}
+		memory[string(s[rhs])] = rhs
+	}
+	return result
 }
