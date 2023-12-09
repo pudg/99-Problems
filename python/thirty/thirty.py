@@ -167,3 +167,23 @@ def longest_substring(s):
         memory[s[rhs]] = rhs
     
     return max_len
+
+def max_area(heights):
+    if not heights:
+        return 0
+    
+    lhs, rhs = 0, len(heights) - 1
+    max_area = 0
+
+    while lhs != rhs:
+        base = rhs - lhs
+        h = min(heights[lhs]. heights[rhs])
+        max_area = max(max_area, base * h)
+        if heights[lhs] <= heights[rhs]:
+            lhs += 1
+        elif heights[rhs] <= heights[lhs]:
+            rhs -= 1
+        else:
+            lhs += 1
+
+    return max_area

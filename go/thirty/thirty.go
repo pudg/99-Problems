@@ -223,3 +223,28 @@ func LongestSubstring(s string) int {
 	}
 	return result
 }
+
+func MaxArea(heights []int) int {
+	lhs := 0
+	rhs := len(heights)
+	if rhs == 0 {
+		return 0
+	}
+	rhs -= 1
+
+	maxArea := 0
+
+	for lhs != rhs {
+		base := rhs - lhs
+		h := min(heights[lhs], heights[rhs])
+		maxArea = max(maxArea, base*h)
+		if heights[lhs] <= heights[rhs] {
+			lhs += 1
+		} else if heights[rhs] <= heights[lhs] {
+			rhs -= 1
+		} else {
+			lhs += 1
+		}
+	}
+	return maxArea
+}
