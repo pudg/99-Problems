@@ -33,3 +33,47 @@ func UniqueOccurrences(nums []int) bool {
 	}
 	return true
 }
+
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
+func ReverseLL(head *ListNode) *ListNode {
+	var prev *ListNode = nil
+	curr := head
+	for curr != nil {
+		nxt := curr.Next
+		curr.Next = prev
+		prev = curr
+		curr = nxt
+	}
+	return prev
+}
+
+func MergeTwoLists(list1, list2 *ListNode) *ListNode {
+	dummy := &ListNode{}
+	helper := dummy
+	for list1 != nil || list2 != nil {
+		if list1 == nil {
+			helper.Next = &ListNode{list2.Val, nil}
+			helper = helper.Next
+			list2 = list2.Next
+		} else if list2 == nil {
+			helper.Next = &ListNode{list1.Val, nil}
+			helper = helper.Next
+			list1 = list1.Next
+		} else {
+			if list1.Val <= list2.Val {
+				helper.Next = &ListNode{list1.Val, nil}
+				helper = helper.Next
+				list1 = list1.Next
+			} else {
+				helper.Next = &ListNode{list2.Val, nil}
+				helper = helper.Next
+				list2 = list2.Next
+			}
+		}
+	}
+	return dummy.Next
+}
