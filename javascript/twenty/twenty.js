@@ -42,3 +42,69 @@ export const SockPairs = (nums) => {
     
     return pairs;
 }
+
+
+export const PlusMinus = (nums) => {
+    let freqs = {
+        'pos': 0,
+        'neg': 0,
+        'zero': 0
+    };
+
+    for (let num of nums) {
+        if (num > 0) {
+            freqs['pos'] += 1;
+        } else if (num == 0) {
+            freqs['zero'] += 1;
+        } else {
+            freqs['neg'] += 1;
+         }
+    }
+
+    let totalNums = nums.length;
+
+    for (let key of Object.keys(freqs)) { 
+        console.log((freqs[key] / totalNums).toFixed(6));
+    }
+}
+
+export const MinMaxSum = (nums) => {
+    nums.sort();
+    let maxSum = nums.slice(-4).reduce((accumulator, currVal) => {
+        return accumulator + currVal;
+    }, 0);
+    let minSum = nums.slice(0, 4).reduce((accumulator, currVal) => {
+        return accumulator + currVal;
+    }, 0);
+    console.log(minSum, maxSum);
+}
+
+export const LonelyInt = (nums) => {
+    let numsMap = {};
+    for (let num of nums) {
+        if (num in numsMap) {
+            numsMap[num] += 1;
+        } else {
+            numsMap[num] = 1;
+        }
+    }
+
+    for (let key of Object.keys(numsMap)) {
+        if (numsMap[key] === 1) {
+            return key;
+        }
+    }
+}
+
+export const DiagonalDifference = (matrix) => {
+    let topDown = 0;
+    let botUp = 0;
+    let row = matrix.length - 1;
+
+    for (let col in matrix) {
+        topDown += matrix[col][col];
+        botUp += matrix[row][col];
+        row -= 1;
+    }
+    return Math.abs(topDown - botUp);
+}
